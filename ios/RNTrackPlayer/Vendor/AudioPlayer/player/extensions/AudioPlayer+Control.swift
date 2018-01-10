@@ -15,8 +15,31 @@ extension AudioPlayer {
     /// Resumes the player.
     public func resume() {
         //Ensure pause flag is no longer set
+
+        setAudioSession(active: false, earPiece: false)
+
         pausedForInterruption = false
-        
+
+        player?.rate = rate
+
+        //We don't wan't to change the state to Playing in case it's Buffering. That
+        //would be a lie.
+        if !state.isPlaying && !state.isBuffering {
+            state = .playing
+        }
+
+        retryEventProducer.startProducingEvents()
+    }
+
+    public func resumeForEarPiece() {
+
+        //Setting Audio Session
+
+        setAudioSession(active: false, earPiece: true)
+
+        //Ensure pause flag is no longer set
+        pausedForInterruption = false
+
         player?.rate = rate
 
         //We don't wan't to change the state to Playing in case it's Buffering. That
@@ -41,13 +64,13 @@ extension AudioPlayer {
         //app is in foreground.
         backgroundHandler.beginBackgroundTask()
     }
-    
+
     /// Starts playing the current item immediately. Works on iOS/tvOS 10+ and macOS 10.12+
     func playImmediately() {
         if #available(iOS 10.0, tvOS 10.0, OSX 10.12, *) {
             self.state = .playing
             player?.playImmediately(atRate: rate)
-            
+
             retryEventProducer.stopProducingEvents()
             backgroundHandler.endBackgroundTask()
         }
@@ -65,7 +88,7 @@ extension AudioPlayer {
             currentItem = nil
         }
 
-        setAudioSession(active: false)
+        setAudioSession(active: false, earPiece: false)
         state = .stopped
     }
 
@@ -136,7 +159,7 @@ extension AudioPlayer {
 }
 
 extension AudioPlayer {
-    
+
     fileprivate func seekSafely(to time: TimeInterval,
               toleranceBefore: CMTime = kCMTimePositiveInfinity,
               toleranceAfter: CMTime = kCMTimePositiveInfinity,

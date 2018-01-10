@@ -16,12 +16,12 @@
         "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable-hdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable-hdpi-v4/rewind.png",
-        "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/src/main/res/drawable-hdpi/rewind.png"
-    },
-    {
         "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable-hdpi-v4/abc_list_focused_holo.9.png",
         "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable-hdpi-v4/abc_list_focused_holo.9.png"
+    },
+    {
+        "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable-hdpi-v4/rewind.png",
+        "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/src/main/res/drawable-hdpi/rewind.png"
     },
     {
         "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable-hdpi-v4/abc_list_pressed_holo_light.9.png",

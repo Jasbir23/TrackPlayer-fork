@@ -89,6 +89,12 @@ public class MediaWrapper extends Binder {
         pb.play();
     }
 
+    public void playWithEarPiece() {
+        Playback pb = manager.getPlayback();
+        if(pb == null) return;
+        pb.playWithEarPiece();
+    }
+
     public void pause() {
         Playback pb = manager.getPlayback();
         if(pb == null) return;

@@ -4,16 +4,16 @@
         "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_list_selector_holo_light.xml"
     },
     {
-        "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable/abc_spinner_textfield_background_material.xml",
-        "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_spinner_textfield_background_material.xml"
+        "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable/abc_ic_voice_search_api_material.xml",
+        "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_ic_voice_search_api_material.xml"
     },
     {
         "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable/abc_ic_menu_paste_material.xml",
         "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_ic_menu_paste_material.xml"
     },
     {
-        "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable/abc_ic_voice_search_api_material.xml",
-        "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_ic_voice_search_api_material.xml"
+        "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable/abc_spinner_textfield_background_material.xml",
+        "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable/abc_spinner_textfield_background_material.xml"
     },
     {
         "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/drawable/abc_btn_borderless_material.xml",

@@ -50,7 +50,7 @@ extension AudioPlayer {
         case .loadedMoreRange:
             if let currentItem = currentItem, let currentItemLoadedRange = currentItemLoadedRange {
                 delegate?.audioPlayer(self, didLoad: currentItemLoadedRange, for: currentItem)
-                
+
                 if bufferingStrategy == .playWhenPreferredBufferDurationFull && state == .buffering,
                     let currentItemLoadedAhead = currentItemLoadedAhead,
                     currentItemLoadedAhead.isNormal,
@@ -107,7 +107,7 @@ extension AudioPlayer {
         case .sessionMessedUp:
             #if os(iOS) || os(tvOS)
                 //We reenable the audio session directly in case we're in background
-                setAudioSession(active: true)
+                setAudioSession(active: true, earPiece: false)
 
                 //Aaaaand we: restart playing/go to next
                 state = .stopped

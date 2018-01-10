@@ -39,7 +39,7 @@ public class AudioPlayer: NSObject {
 
     /// The quality adjustment event producer.
     var qualityAdjustmentEventProducer = QualityAdjustmentEventProducer()
-    
+
     /// The audio item event producer.
     var trackEventProducer = TrackEventProducer()
 
@@ -82,13 +82,13 @@ public class AudioPlayer: NSObject {
             if let currentItem = currentItem {
                 // Save previous item's progression
                 let oldProgression = currentItemProgression
-                
+
                 // Stops the current player
                 player?.rate = 0
                 player = nil
 
                 // Ensures the audio session got started
-                setAudioSession(active: true)
+                setAudioSession(active: true, earPiece: false)
 
                 // Sets new state
                 if reachability.isReachable() || currentItem.url.isLocal {
@@ -100,20 +100,20 @@ public class AudioPlayer: NSObject {
                     backgroundHandler.beginBackgroundTask()
                     return
                 }
-                
+
                 // Reset special state flags
                 pausedForInterruption = false
-                
+
                 // Create new AVPlayerItem
                 let playerItem = AVPlayerItem(url: currentItem.url.value)
-                
+
                 if #available(iOS 10.0, tvOS 10.0, OSX 10.12, *) {
                     playerItem.preferredForwardBufferDuration = self.preferredForwardBufferDuration
                 }
 
                 // Creates new player
                 player = AVPlayer(playerItem: playerItem)
-                
+
                 // Updates information on the lock screen
                 updateNowPlayingInfoCenter()
 
@@ -205,18 +205,18 @@ public class AudioPlayer: NSObject {
             }
         }
     }
-    
+
     /// Defines the buffering strategy used to determine how much to buffer before starting playback
     var bufferingStrategy: AudioPlayerBufferingStrategy = .defaultBuffering {
         didSet {
             updatePlayerForBufferingStrategy()
         }
     }
-    
+
     /// Defines the preferred buffer duration in seconds before playback begins. Defaults to 60.
     /// Works on iOS/tvOS 10+ when `bufferingStrategy` is `.playWhenPreferredBufferDurationFull`.
     var preferredBufferDurationBeforePlayback = TimeInterval(60)
-    
+
     /// Defines the preferred size of the forward buffer for the underlying `AVPlayerItem`.
     /// Works on iOS/tvOS 10+, default is 0, which lets `AVPlayer` decide.
     var preferredForwardBufferDuration = TimeInterval(0)
@@ -268,9 +268,9 @@ public class AudioPlayer: NSObject {
             }
         }
     }
-    
+
     // MARK: Public Methods
-    
+
     func play(track: Track) {
         currentItem = track
     }
@@ -347,10 +347,16 @@ public class AudioPlayer: NSObject {
     /// Enables or disables the `AVAudioSession` and sets the right category.
     ///
     /// - Parameter active: A boolean value indicating whether the audio session should be set to active or not.
-    func setAudioSession(active: Bool) {
+    func setAudioSession(active: Bool, earPiece: Bool) {
         #if os(iOS) || os(tvOS)
-            _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            _ = try? AVAudioSession.sharedInstance().setActive(active)
+            if earPiece {
+                _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+                _ = try? AVAudioSession.sharedInstance().setMode(AVAudioSessionModeVoiceChat)
+                _ = try? AVAudioSession.sharedInstance().setActive(active)
+            } else {
+                _ = try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                _ = try? AVAudioSession.sharedInstance().setActive(active)
+            }
         #endif
     }
 
@@ -382,7 +388,7 @@ public class AudioPlayer: NSObject {
             player?.seek(to: CMTime(timeInterval: cip))
         }
     }
-    
+
     /// Updates the current player based on the current buffering strategy.
     /// Only has an effect on iOS 10+, tvOS 10+ and macOS 10.12+
     func updatePlayerForBufferingStrategy() {
@@ -390,7 +396,7 @@ public class AudioPlayer: NSObject {
             player?.automaticallyWaitsToMinimizeStalling = self.bufferingStrategy != .playWhenBufferNotEmpty
         }
     }
-    
+
     /// Updates a given player item based on the `preferredForwardBufferDuration` set.
     /// Only has an effect on iOS 10+, tvOS 10+ and macOS 10.12+
     func updatePlayerItemForBufferingStrategy(_ playerItem: AVPlayerItem) {

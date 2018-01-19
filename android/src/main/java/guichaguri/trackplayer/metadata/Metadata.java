@@ -21,6 +21,7 @@ import guichaguri.trackplayer.metadata.components.ArtworkLoader;
 import guichaguri.trackplayer.metadata.components.ButtonListener;
 import guichaguri.trackplayer.metadata.components.CustomVolume;
 import guichaguri.trackplayer.metadata.components.MediaNotification;
+import guichaguri.trackplayer.metadata.components.MusicIntentReceiver;
 import guichaguri.trackplayer.metadata.components.NoisyReceiver;
 import guichaguri.trackplayer.player.Playback;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class Metadata {
     private final MediaSessionCompat session;
     private final MediaNotification notification;
     private final NoisyReceiver noisyReceiver;
+    private final MusicIntentReceiver musicIntentReceiver;
 
     private ArtworkLoader artwork = null;
     private CustomVolume volume = null;
@@ -59,11 +61,15 @@ public class Metadata {
         notification = new MediaNotification(context, session);
 
         noisyReceiver = new NoisyReceiver(context, session);
+
+        musicIntentReceiver = new MusicIntentReceiver(context, session);
     }
 
     public void setEnabled(boolean enabled) {
         // Change the MediaSession visibility
         session.setActive(enabled);
+        // Update the headset connection listener to start receiving when it's playing
+        musicIntentReceiver.setEnabled(true);
     }
 
     public Token getToken() {

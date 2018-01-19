@@ -31,7 +31,7 @@ protocol AudioPlayerDelegate: class {
     ///   - position: The position item that is going to be replaced was at.
     ///   - track: The item that is about to start being played.
     func audioPlayer(_ audioPlayer: AudioPlayer, willChangeTrackFrom from: Track?, at position: TimeInterval?, to track: Track)
-    
+
     /// This method is called when the audio player finishes playing an item.
     ///
     /// - Parameters:
@@ -48,6 +48,8 @@ protocol AudioPlayerDelegate: class {
     ///   - percentageRead: The percentage of the file that has been read. It's a Float value between 0 & 100 so that
     ///         you can easily update an `UISlider` for example.
     func audioPlayer(_ audioPlayer: AudioPlayer, didUpdateProgressionTo time: TimeInterval, percentageRead: Float)
+
+    func audioPlayer(_ audioPlayer: AudioPlayer, didHeadphonePluggedIn isHeadPhone: Bool, previousState: Bool)
 
     /// This method gets called when the current item duration has been found.
     ///
@@ -80,8 +82,10 @@ extension AudioPlayerDelegate {
                      to state: AudioPlayerState) {}
 
     func audioPlayer(_ audioPlayer: AudioPlayer, willChangeTrackFrom from: Track?, at position: TimeInterval?, to track: Track) {}
-    
+
     func audioPlayer(_ audioPlayer: AudioPlayer, didUpdateProgressionTo time: TimeInterval, percentageRead: Float) {}
+
+    func audioPlayer(_ audioPlayer: AudioPlayer, didHeadphonePluggedIn isHeadPhone: Bool, previousState: Bool) {}
 
     func audioPlayer(_ audioPlayer: AudioPlayer, didFindDuration duration: TimeInterval, for item: Track) {}
 

@@ -4,6 +4,14 @@
         "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/src/main/res/xml/automotive_app_desc.xml"
     },
     {
+        "merged": "/Users/neeraj/Sites/projects/TrackPlayer/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/xml/automotive_app_desc.xml",
+        "source": "/Users/neeraj/Sites/projects/TrackPlayer/node_modules/react-native-track-player/android/src/main/res/xml/automotive_app_desc.xml"
+    },
+    {
+        "merged": "/Users/neeraj/Sites/projects/TrackPlayer/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/xml/preferences.xml",
+        "source": "/Users/neeraj/Sites/projects/TrackPlayer/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.facebook.react/react-native/0.51.0/res/xml/preferences.xml"
+    },
+    {
         "merged": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/res/merged/release/xml/preferences.xml",
         "source": "/Users/neeraj/Sites/projects/newTrack/node_modules/react-native-track-player/android/build/intermediates/exploded-aar/com.facebook.react/react-native/0.52.0/res/xml/preferences.xml"
     }

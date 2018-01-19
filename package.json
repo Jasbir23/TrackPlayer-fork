@@ -41,6 +41,27 @@
         }
       },
       "/Users/neeraj/Sites/projects/newTrack"
+    ],
+    [
+      {
+        "raw": "react-native-track-player@git+https://github.com/Jasbir23/TrackPlayer-fork.git",
+        "scope": null,
+        "escapedName": "react-native-track-player",
+        "name": "react-native-track-player",
+        "rawSpec": "git+https://github.com/Jasbir23/TrackPlayer-fork.git",
+        "spec": "git+https://github.com/Jasbir23/TrackPlayer-fork.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:Jasbir23/TrackPlayer-fork.git",
+          "sshUrl": "git+ssh://git@github.com/Jasbir23/TrackPlayer-fork.git",
+          "httpsUrl": "git+https://github.com/Jasbir23/TrackPlayer-fork.git",
+          "gitUrl": "git://github.com/Jasbir23/TrackPlayer-fork.git",
+          "shortcut": "github:Jasbir23/TrackPlayer-fork",
+          "directUrl": "https://raw.githubusercontent.com/Jasbir23/TrackPlayer-fork/master/package.json"
+        }
+      },
+      "/Users/neeraj/Sites/projects/TrackPlayer"
     ]
   ],
   "_from": "git+https://github.com/Jasbir23/TrackPlayer-fork.git",
@@ -70,11 +91,11 @@
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "git+https://github.com/Jasbir23/TrackPlayer-fork.git#6d46bda646528be9a28c07402d587bce6db4b63c",
-  "_shasum": "7ca715600f0bc57c7ab36076bc59bde5768e5343",
+  "_resolved": "git+https://github.com/Jasbir23/TrackPlayer-fork.git#ce08944083201eafbc1fedcda999b9409cc496c4",
+  "_shasum": "81cfa0af5f8693eb5e9b0464cafe7997ef989f7b",
   "_shrinkwrap": null,
   "_spec": "react-native-track-player@git+https://github.com/Jasbir23/TrackPlayer-fork.git",
-  "_where": "/Users/neeraj/Sites/projects/newTrack",
+  "_where": "/Users/neeraj/Sites/projects/TrackPlayer",
   "author": {
     "name": "Guichaguri"
   },

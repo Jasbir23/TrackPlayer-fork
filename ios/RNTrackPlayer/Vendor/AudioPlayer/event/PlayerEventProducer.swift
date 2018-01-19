@@ -71,6 +71,8 @@ class PlayerEventProducer: NSObject, EventProducer {
         case progressed(time: CMTime)
         case endedPlaying(error: Error?)
         case interruptionBegan
+        case headphonePluggedIn
+        case headphonePulledOut
         case interruptionEnded(shouldResume: Bool)
         case routeChanged
         case sessionMessedUp
@@ -104,6 +106,16 @@ class PlayerEventProducer: NSObject, EventProducer {
         guard let player = player, !listening else {
             return
         }
+
+        //Checking Whether Headphone is already plugged in or not
+
+         let outputs = AVAudioSession.sharedInstance().currentRoute.outputs
+
+         for output in outputs{
+         if output.portType == AVAudioSessionPortHeadphones {
+                 eventListener?.onEvent(PlayerEvent.headphonePluggedIn, generetedBy: self)
+             }
+         }
 
         //Observing notifications sent through `NSNotificationCenter`
         let center = NotificationCenter.default
@@ -216,7 +228,7 @@ class PlayerEventProducer: NSObject, EventProducer {
                     eventListener?.onEvent(
                         PlayerEvent.loadedMoreRange(earliest: range.start, latest: range.end), generetedBy: self)
                 }
-            
+
             case "currentItem.timedMetadata":
                 if let metadata = currentItem.timedMetadata {
                     eventListener?.onEvent(PlayerEvent.loadedMetadata(metadata: metadata), generetedBy: self)
@@ -257,6 +269,16 @@ class PlayerEventProducer: NSObject, EventProducer {
     /// - Parameter note: The notification information.
     @objc fileprivate func audioSessionRouteChanged(note: NSNotification) {
         eventListener?.onEvent(PlayerEvent.routeChanged, generetedBy: self)
+        let audioRouteChangeReason = note.userInfo![AVAudioSessionRouteChangeReasonKey]  as? UInt
+
+             switch audioRouteChangeReason {
+             case AVAudioSessionRouteChangeReason.newDeviceAvailable.rawValue?:
+                 eventListener?.onEvent(PlayerEvent.headphonePluggedIn, generetedBy: self)
+             case AVAudioSessionRouteChangeReason.oldDeviceUnavailable.rawValue?:
+                 eventListener?.onEvent(PlayerEvent.headphonePulledOut, generetedBy: self)
+             default:
+                 break;
+             }
     }
 
     /// Audio session got messed up (media services lost or reset). We gotta reactive the audio session and reset
